@@ -1,0 +1,24 @@
+<h1>New Database Table:</h1>
+
+<form action="/new_table" method="POST">
+    Table Name: <input type="text" name="table_name">
+    <br/>
+
+    <% for i in 4..3 do %>
+        <%= "Column#{i}:" %>
+        <br>
+        <%= "Name: " %>
+        <input type='text' name='col'>
+        Type: 
+        <input type='text' name='type'>
+        <br>
+
+        <%#= "Column#{i}: name: <input type='text' name='col#{i}'> type: <input type='text' name='type#{i}'">%>
+    <% end %>
+    Column 1:
+    name: <input type="text" name="col1"> type: <input type="text" name="type1">
+    <br>
+
+
+    <input type="submit">
+</form>
