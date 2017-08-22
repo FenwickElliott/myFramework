@@ -9,6 +9,10 @@ class Serve
         @@app = @app = File.join(File.dirname(__FILE__), "..", "app")
         @@db = BlocRecord.new(File.join(@@app, "db", "data.db"))
     end
+
+    def self.pong(res)
+        res
+    end
     
     def call(env)
         @@env = @env = env

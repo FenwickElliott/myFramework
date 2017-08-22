@@ -10,6 +10,7 @@ class Serve
             end
         end
         @@db.create_table(para["table_name"], scm)
+        puts 'table created'
     end
     self.create_table if @@env["REQUEST_METHOD"] == "POST"
 
