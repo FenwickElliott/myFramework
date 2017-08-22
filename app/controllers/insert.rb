@@ -1,4 +1,10 @@
 class Serve
+    def self.decide
+        return self.build_form if @@env["REQUEST_METHOD"] == "GET"
+        self.insert if @@env["REQUEST_METHOD"] == "POST"
+        # redirect_here
+    end
+
     def self.build_form
         tbl = @@env["QUERY_STRING"]
         scm = @@db.schema(tbl)
@@ -15,6 +21,7 @@ class Serve
             CELL
         end
         res << <<-FORM
+            <input type="hidden" name="tbl" value="#{tbl}">
             <input type="submit">
             </form>
         FORM
@@ -23,8 +30,11 @@ class Serve
 
     def self.insert
         para = Rack::Request.new(@@env).params
-        puts para
-
+        tbl = para.delete("tbl")
+        begin
+            @@db.insert(tbl, para)
+        rescue => e
+            puts e
+        end
     end
-    self.insert if @@env["REQUEST_METHOD"] == "POST"
 end

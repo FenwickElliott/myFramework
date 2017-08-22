@@ -9,8 +9,12 @@ class Serve
                 scm.store( para["col#{i}"] , para["type#{i}"] )
             end
         end
-        @@db.create_table(para["table_name"], scm)
-        puts 'table created'
+        begin
+            @@db.create_table(para["table_name"], scm)
+            puts 'table created'
+        rescue => e
+            puts e
+        end
     end
     self.create_table if @@env["REQUEST_METHOD"] == "POST"
 
