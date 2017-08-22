@@ -1,3 +1,3 @@
-require_relative 'lib/nuframe'
+require_relative 'lib/frame'
 
 run Serve.new
