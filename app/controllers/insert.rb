@@ -1,10 +1,8 @@
 class Serve
-    def self.insert
+    def self.build_form
         tbl = @@env["QUERY_STRING"]
         scm = @@db.schema(tbl)
-    # end
 
-    # def self.build_form
         res = <<-FORM
         <h1> Inserting into #{tbl} </h1>
         <form action="/insert" method="POST">
@@ -20,7 +18,13 @@ class Serve
             <input type="submit">
             </form>
         FORM
-        puts res
         res
     end
+
+    def self.insert
+        para = Rack::Request.new(@@env).params
+        puts para
+
+    end
+    self.insert if @@env["REQUEST_METHOD"] == "POST"
 end

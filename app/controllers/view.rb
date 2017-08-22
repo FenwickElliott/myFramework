@@ -8,8 +8,14 @@ class Serve
         <table style="width:100%">
             <tr>
         RES
-        scm.keys.each {|k| res << "<th>#{k}</th>\n"}
+        scm.keys.each {|k| res << "<th>#{k}</th>"}
         res << "</tr>"
-    end
 
+        for i in 1..@@db.count(tbl)
+            res << "<tr style='text-align:center'>\n"
+            @@db.objectify_row(tbl,i).values.each {|v| res << "<td>#{v}</td>"}
+            res << "</tr>\n"
+        end
+        res
+    end
 end
