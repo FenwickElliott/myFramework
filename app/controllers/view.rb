@@ -1,14 +1,8 @@
 require 'bloc_record'
 
 class Serve
-    def self.get_table
-        # puts @@db.count('third')
-        # puts @@db.objectify_table('third')
-
-        scm = @@db.schema('fourth')
-    end
-
-    def self.view_table(tbl)
+    def self.view_table
+        tbl = @@env["QUERY_STRING"]
         scm = @@db.schema(tbl)
         res = <<-RES
         <table style="width:100%">

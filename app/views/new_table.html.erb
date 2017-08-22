@@ -1,10 +1,8 @@
 <h1> New Table </h1>
 
-<% n = 3 %>
-
 <form action="/new_table" method="POST">
     <b>Table Name:</b><input type="text" name="table_name">
     <br/>
-    <%= Serve.build_form(n) %>
+    <%= Serve.build_form %>
     <input type="submit">
 </form>

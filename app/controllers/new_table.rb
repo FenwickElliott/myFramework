@@ -14,7 +14,9 @@ class Serve
     end
     self.create_table if @@env["REQUEST_METHOD"] == "POST"
 
-    def self.build_form(n)
+    def self.build_form
+        n = @@env["QUERY_STRING"].to_i
+        n = 5 if n == 0
         res = ""
         for i in 1..n do
             res << "<b>Column #{i}:</b>"
